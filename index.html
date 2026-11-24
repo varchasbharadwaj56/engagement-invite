@@ -84,7 +84,40 @@
   .frame-wrap.arch::before{border-radius:999px 999px 0 0}
   .frame{position:absolute;inset:0;overflow:hidden;background:var(--paper-d);cursor:pointer;box-shadow:0 30px 60px -24px rgba(70,35,10,.45)}
   .frame-wrap.arch .frame{border-radius:999px 999px 0 0}
-  .frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);will-change:transform;user-select:none;-webkit-user-drag:none}
+  .frame{container-type:inline-size}
+  .frame img,.frame video{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+  .frame video{position:absolute;inset:0;opacity:0;transition:opacity .8s}
+  .frame video.on{opacity:1}
+
+  /* living scenes */
+  .live,.breathe{position:absolute;inset:0;will-change:transform}
+  .live{transform:scale(1.1)}
+  .breathe{animation:breathe 9s ease-in-out infinite alternate}
+  @keyframes breathe{from{transform:scale(1) translate(0,0)}to{transform:scale(1.045) translate(-1%,-.7%)}}
+  .scene{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .scene span{position:absolute;display:block;pointer-events:none}
+  .scene .sub{inset:0}
+  .spark{border-radius:50%;mix-blend-mode:screen}
+  .lp{border-radius:80% 0 80% 0;opacity:.9}
+  .snow{border-radius:50%;opacity:.9}
+  .bubble{border-radius:50%;border:1.5px solid rgba(255,255,255,.85);background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.75),rgba(255,255,255,.05) 60%)}
+  .glow{border-radius:50%;background:radial-gradient(circle,rgba(255,236,170,.95),rgba(255,180,80,.4) 40%,transparent 70%);mix-blend-mode:screen}
+  .ball{width:4.6cqw;height:4.6cqw;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff9b0,#e6d01c 55%,#9c8a00);box-shadow:0 0 0 1px rgba(80,60,0,.55),0 3px 6px rgba(0,0,0,.25)}
+  .heart{color:#ff6f61;font-size:6cqw;line-height:1;text-shadow:0 0 10px rgba(255,150,120,.95)}
+  .aurora{border-radius:50%;filter:blur(8px);mix-blend-mode:screen;background:linear-gradient(100deg,transparent,rgba(80,255,170,.6) 30%,rgba(140,120,255,.5) 65%,transparent)}
+  .hand{width:.7cqw;height:8.5cqw;border-radius:1cqw;background:var(--maroon);transform-origin:50% 100%}
+  .shine{width:14%;height:100%;top:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);mix-blend-mode:screen}
+  .caustic{inset:-20%;opacity:.35;mix-blend-mode:soft-light;
+    background:radial-gradient(circle at 20% 30%,#fff 0 6%,transparent 14%),radial-gradient(circle at 70% 60%,#fff 0 5%,transparent 13%),radial-gradient(circle at 45% 85%,#fff 0 4%,transparent 12%);background-size:40% 40%}
+  .bird svg,.fish svg{display:block;width:100%;height:100%;overflow:visible}
+  .bird{width:6cqw;height:2.4cqw}
+  .fish{width:10cqw;height:5cqw}
+  .bfly{width:4cqw;height:3.4cqw}
+  .bfly i{position:absolute;top:0;width:50%;height:100%;border-radius:60% 60% 30% 60%;animation:flap .22s ease-in-out infinite alternate}
+  .bfly i:first-child{left:0;transform-origin:100% 50%}
+  .bfly i:last-child{right:0;transform-origin:0 50%;border-radius:60% 60% 60% 30%}
+  @keyframes flap{to{transform:scaleX(.25)}}
+  .star{font-size:7cqw;line-height:1;color:#fff6c8;text-shadow:0 0 10px #ffe28a,0 0 20px #ffcf5a}
   .tape{position:absolute;top:-15px;left:50%;width:120px;height:32px;margin-left:-60px;background:rgba(236,208,138,.7);transform:rotate(-3deg);z-index:3;box-shadow:0 2px 4px rgba(0,0,0,.08)}
   .expand{position:absolute;right:12px;bottom:12px;z-index:3;width:42px;height:42px;border-radius:50%;border:0;background:rgba(251,245,234,.92);cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:transform .25s}
   .expand:hover{transform:scale(1.1)}
@@ -133,7 +166,7 @@
   .invite{padding:18vh 16px 12vh;background:radial-gradient(ellipse at 50% 0%, #fffaf0, var(--paper) 70%);position:relative;overflow:hidden}
   .invite-card{max-width:660px;margin:0 auto;text-align:center;background:var(--cream);border:1px solid var(--gold);outline:1px solid var(--gold);outline-offset:-12px;
     padding:clamp(34px,6vw,60px) clamp(20px,5vw,52px);position:relative;z-index:2;box-shadow:0 40px 80px -40px rgba(70,35,10,.45)}
-  .arch-photo{width:min(330px,72vw);aspect-ratio:4/5;margin:0 auto 30px;border-radius:999px 999px 0 0;overflow:hidden;border:6px solid var(--paper);outline:1.5px solid var(--gold);cursor:pointer}
+  .arch-photo{position:relative;container-type:inline-size;width:min(330px,72vw);aspect-ratio:4/5;margin:0 auto 30px;border-radius:999px 999px 0 0;overflow:hidden;border:6px solid var(--paper);outline:1.5px solid var(--gold);cursor:pointer}
   .arch-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.05)}
   .invite .lead{font-family:var(--serif);font-style:italic;font-size:1.35rem;color:var(--muted);max-width:26em;margin:0 auto}
   .names{font-family:var(--serif);font-weight:500;font-size:clamp(2.8rem,9vw,4.8rem);line-height:.95;margin:.35em 0 .4em}
@@ -199,7 +232,7 @@
     .stamp{width:88px;height:88px;font-size:.6rem}
   }
   @media (prefers-reduced-motion:reduce){
-    #seal,.scroll-cue span,.petal{animation:none}
+    #seal,.scroll-cue span,.petal,.breathe{animation:none}
   }
 </style>
 </head>
@@ -440,7 +473,10 @@ const CONFIG = {
   venue: "Venue Name",
   address: "Street, City",
   mapsQuery: "Mysuru, Karnataka",        // what Google Maps should search for
-  rsvpWhatsApp: ""                       // optional, e.g. "919800000000" to open a WhatsApp RSVP
+  rsvpWhatsApp: "",                      // optional, e.g. "919800000000" to open a WhatsApp RSVP
+  // optional real video clips (e.g. made with an AI image-to-video tool), keyed by picture file name:
+  // clips: { "02-pickleball-with-friends.png": "clips/02-pickleball.mp4" }
+  clips: {}
 };
 /* ========================================================= */
 
@@ -552,6 +588,162 @@ function openGate() {
 }
 $("#seal").addEventListener("click", openGate);
 
+/* ---------- living scenes ---------- */
+const RND = gsap.utils.random;
+function mk(parent, cls, css = {}, html = "") {
+  const e = document.createElement("span"); e.className = cls;
+  Object.assign(e.style, css); if (html) e.innerHTML = html;
+  parent.appendChild(e); return e;
+}
+function twinkle(L, T, n, x0, x1, y0, y1, color = "#ffe39a", size = 2.4) {
+  for (let i = 0; i < n; i++) {
+    const s = mk(L, "spark", { left: RND(x0, x1) + "%", top: RND(y0, y1) + "%", width: size + "cqw", height: size + "cqw",
+      background: `radial-gradient(circle, #fff 0 16%, ${color} 34%, transparent 70%)` });
+    gsap.set(s, { xPercent: -50, yPercent: -50 });
+    T.push(gsap.fromTo(s, { opacity: .1, scale: .5 }, { opacity: 1, scale: 1.4, duration: RND(.5, 1.5), repeat: -1, yoyo: true, ease: "sine.inOut", delay: RND(0, 2) }));
+  }
+}
+function drift(L, T, n, o) { // falling petals / snow / leaves, or rising bubbles (o.up)
+  const { colors = ["#fff"], cls = "lp", x0 = 0, x1 = 100, size = [1.6, 2.8], dur = [5, 9], up = false, from = up ? 108 : -8, to = up ? -8 : 108 } = o;
+  for (let i = 0; i < n; i++) {
+    const sz = RND(...size);
+    const s = mk(L, cls, { left: RND(x0, x1) + "%", width: sz + "cqw", height: sz * (cls === "lp" ? 1.3 : 1) + "cqw", background: cls === "bubble" ? "" : colors[i % colors.length] });
+    const t = gsap.fromTo(s, { top: from + "%", rotation: 0, opacity: 1 }, { top: to + "%", rotation: up ? 0 : RND(-360, 360), opacity: o.fade ? 0 : 1, duration: RND(...dur), repeat: -1, ease: "none" });
+    t.progress(Math.random()); T.push(t);
+    T.push(gsap.to(s, { x: RND(-18, 18), duration: RND(1.2, 2.4), repeat: -1, yoyo: true, ease: "sine.inOut" }));
+  }
+}
+function glow(L, T, x, y, size, flicker = true) {
+  const g = mk(L, "glow", { left: x + "%", top: y + "%", width: size + "cqw", height: size + "cqw" });
+  gsap.set(g, { xPercent: -50, yPercent: -50 });
+  T.push(flicker
+    ? gsap.to(g, { opacity: () => RND(.55, 1), scale: () => RND(.85, 1.15), duration: .12, repeat: -1, repeatRefresh: true, ease: "none" })
+    : gsap.fromTo(g, { opacity: .4 }, { opacity: 1, duration: 1.6, repeat: -1, yoyo: true, ease: "sine.inOut" }));
+}
+function butterflies(L, T, n, x0, x1, y0, y1, colors) {
+  for (let i = 0; i < n; i++) {
+    const c = colors[i % colors.length];
+    const b = mk(L, "bfly", { left: RND(x0, x1) + "%", top: RND(y0, y1) + "%" }, `<i style="background:${c}"></i><i style="background:${c}"></i>`);
+    T.push(gsap.to(b, { left: () => RND(x0, x1) + "%", top: () => RND(y0, y1) + "%", rotation: () => RND(-25, 25), duration: () => RND(1.6, 3), ease: "sine.inOut", repeat: -1, repeatRefresh: true }));
+  }
+}
+function birds(L, T, n, y0, y1) {
+  for (let i = 0; i < n; i++) {
+    const b = mk(L, "bird", { top: RND(y0, y1) + "%", left: "-10%" },
+      '<svg viewBox="0 0 24 10"><path d="M0 6 Q6 0 12 6 Q18 0 24 6" fill="none" stroke="#3a2c25" stroke-width="1.8" stroke-linecap="round"/></svg>');
+    T.push(gsap.to($("svg", b), { scaleY: .3, duration: .25, repeat: -1, yoyo: true, ease: "sine.inOut", transformOrigin: "50% 60%" }));
+    T.push(gsap.to(b, { left: "110%", y: RND(-15, 15), duration: RND(9, 13), repeat: -1, repeatDelay: RND(0, 3), ease: "none", delay: i * 2.5 }));
+  }
+}
+function arc(L, T, cls, pts, opts = {}) { // move an element through % points
+  const e = mk(L, cls, { left: pts[0][0] + "%", top: pts[0][1] + "%" }, opts.html || "");
+  gsap.set(e, { xPercent: -50, yPercent: -50 });
+  const tl = gsap.timeline({ repeat: -1, repeatDelay: opts.repeatDelay || 0, delay: opts.delay || 0 });
+  pts.slice(1).forEach(([x, y, d = .6, extra = {}]) => tl.to(e, { left: x + "%", top: y + "%", duration: d, ease: extra.ease || "sine.inOut", ...extra }));
+  T.push(tl); return e;
+}
+const FISH = '<svg viewBox="0 0 40 20"><path d="M30 10 L40 2 L40 18 Z" fill="#f2c230"/><ellipse cx="17" cy="10" rx="16" ry="8" fill="#f7d443"/><path d="M10 3v14M17 2v16M24 3v14" stroke="#1d3c5a" stroke-width="2.4"/><circle cx="6" cy="8" r="1.6" fill="#111"/></svg>';
+
+const SCENES = {
+  "02-pickleball-with-friends.png"(L, T) {
+    [[36, 12], [57, 6], [90, 11]].forEach(([x, y]) => glow(L, T, x, y, 16, false));
+    // a little rally between the two paddles
+    arc(L, T, "ball", [[83, 86], [62, 30, .55, { ease: "power2.out" }], [27, 58, .55, { ease: "power2.in" }], [50, 35, .5, { ease: "power2.out" }], [83, 86, .55, { ease: "power2.in" }]], { repeatDelay: .4 });
+  },
+  "03-new-years-grapes.png"(L, T) {
+    twinkle(L, T, 16, 2, 98, 2, 24, "#ffd46b");
+    const hand = mk(L, "hand", { left: "70.8%", top: "12.2%" });
+    gsap.set(hand, { xPercent: -50, yPercent: -100 });
+    T.push(gsap.to(hand, { rotation: 360, duration: 12, repeat: -1, ease: "steps(60)" }));
+    // grapes popped from the bowl into each mouth
+    [[10, 55], [29, 55], [52, 53], [77, 55], [93, 56]].forEach(([x, y], i) => {
+      const g = arc(L, T, "ball", [[50, 93], [(50 + x) / 2, y - 18, .5, { ease: "power2.out" }], [x, y, .4, { ease: "power2.in" }], [x, y, .15, { scale: 0, ease: "back.in(3)" }]],
+        { delay: i * .7, repeatDelay: 3.2 });
+      g.style.width = g.style.height = "3.6cqw";
+      g.style.background = "radial-gradient(circle at 35% 30%,#f4ffc0,#b5cc3d 55%,#6f8a1c)";
+    });
+  },
+  "04-sweden-video-call.png"(L, T) {
+    const left = mk(L, "sub", { clipPath: "polygon(0 0, 67% 0, 37% 100%, 0 100%)" });
+    const a = mk(left, "aurora", { left: "-10%", top: "-6%", width: "85%", height: "30%" });
+    T.push(gsap.to(a, { x: "8%", scaleY: 1.4, opacity: .6, rotation: 4, duration: 3.5, repeat: -1, yoyo: true, ease: "sine.inOut" }));
+    drift(left, T, 22, { cls: "snow", colors: ["#fff"], x1: 66, size: [.8, 1.6], dur: [6, 10] });
+    for (let i = 0; i < 3; i++)
+      arc(L, T, "heart", [[33, 47], [44, 36, .7, { ease: "power1.out" }], [61, 52, .8, { ease: "power1.in", opacity: 0, scale: .5 }]], { html: "♥", delay: i * .55, repeatDelay: 1.2 });
+  },
+  "05-mysore-zoo.jpg"(L, T) {
+    drift(L, T, 10, { colors: ["#e86aa6", "#f39ac4", "#d84b8f"], x0: 0, x1: 45, size: [1.2, 2.2], dur: [6, 10] });
+    butterflies(L, T, 3, 2, 40, 45, 80, ["#f6a531", "#e86aa6", "#f7d443"]);
+    birds(L, T, 2, 3, 14);
+  },
+  "06-stockholm-walk.png"(L, T) {
+    birds(L, T, 3, 3, 16);
+    drift(L, T, 8, { colors: ["#f39ac4", "#f7c8d8", "#ffffff"], size: [1, 1.8], dur: [7, 11] });
+  },
+  "07-sardinia-snorkeling.png"(L, T) {
+    const c = mk(L, "caustic");
+    T.push(gsap.to(c, { backgroundPosition: "40% 30%, -30% 50%, 20% -40%", duration: 6, repeat: -1, yoyo: true, ease: "sine.inOut" }));
+    drift(L, T, 16, { cls: "bubble", up: true, size: [1.4, 3.4], dur: [4, 8] });
+    const f1 = arc(L, T, "fish", [[-12, 72], [112, 76, 11, { ease: "none" }]], { html: FISH, repeatDelay: 1 });
+    const f2 = arc(L, T, "fish", [[112, 84], [-12, 80, 13, { ease: "none" }]], { html: FISH, delay: 4, repeatDelay: 1 });
+    gsap.set($("svg", f2), { scaleX: -1 });
+    [f1, f2].forEach(f => T.push(gsap.to(f, { y: 6, duration: .9, repeat: -1, yoyo: true, ease: "sine.inOut" })));
+  },
+  "08-bologna-dinner.png"(L, T) {
+    glow(L, T, 57.5, 89, 12);
+    twinkle(L, T, 10, 2, 98, 52, 68, "#ffd27a", 2);
+    const car = mk(L, "sub", { clipPath: "inset(19% 3% 52% 45%)" });
+    const s = mk(car, "shine", { left: "35%" });
+    T.push(gsap.to(s, { left: "105%", duration: 1.4, ease: "power2.inOut", repeat: -1, repeatDelay: 2.5 }));
+  },
+  "09-dolomites-proposal.png"(L, T) {
+    const st = mk(L, "star", { left: "45.5%", top: "38%" }, "✦");
+    gsap.set(st, { xPercent: -50, yPercent: -50 });
+    T.push(gsap.fromTo(st, { scale: .4, rotation: 0, opacity: .5 }, { scale: 1.2, rotation: 90, opacity: 1, duration: .9, repeat: -1, yoyo: true, ease: "sine.inOut" }));
+    drift(L, T, 14, { colors: ["#f39ac4", "#ffffff", "#f7d443", "#c9a2f0"], up: true, from: 104, to: 55, fade: true, size: [1, 1.8], dur: [3, 6] });
+    butterflies(L, T, 2, 55, 95, 60, 90, ["#f7d443", "#ffffff"]);
+  },
+  "10-families-meeting.png"(L, T) {
+    drift(L, T, 14, { colors: ["#f6a531", "#f7d443", "#e8612c"], size: [1.2, 2.2], dur: [6, 10] });
+    twinkle(L, T, 6, 30, 70, 2, 18, "#ffd27a");
+  },
+  "engagement.jpg"(L, T) {
+    twinkle(L, T, 14, 3, 22, 10, 36, "#ffe39a");
+    twinkle(L, T, 14, 72, 97, 10, 36, "#ffe39a");
+    drift(L, T, 10, { colors: ["#f39ac4", "#f7d443", "#ffffff"], size: [1.2, 2.2], dur: [6, 10] });
+  }
+};
+
+function addScene(host, key, observeEl) {
+  const make = SCENES[key];
+  if (!make || reduce) return null;
+  const L = mk(host, "scene"); const T = [];
+  make(L, T);
+  T.forEach(t => t.pause());
+  new IntersectionObserver(([en]) => T.forEach(t => en.isIntersecting ? t.resume() : t.pause())).observe(observeEl || host);
+  return L;
+}
+
+// wrap every story picture so it can "live": .live (scroll motion) > .breathe (idle motion) > img + scene
+$$(".frame").forEach(frame => {
+  const img = $("img", frame);
+  const key = img.getAttribute("src").split("/").pop();
+  const live = document.createElement("div"); live.className = "live";
+  const br = document.createElement("div"); br.className = "breathe";
+  br.style.animationDelay = -RND(0, 9) + "s";
+  frame.insertBefore(live, img); live.appendChild(br); br.appendChild(img);
+  const scene = addScene(br, key, frame);
+  const clip = CONFIG.clips && CONFIG.clips[key];
+  if (clip) {
+    const v = document.createElement("video");
+    Object.assign(v, { src: clip, muted: true, loop: true, autoplay: true, playsInline: true });
+    v.addEventListener("playing", () => { v.classList.add("on"); if (scene) scene.style.display = "none"; }, { once: true });
+    v.addEventListener("error", () => v.remove());
+    br.appendChild(v);
+  }
+});
+addScene($(".arch-photo"), "engagement.jpg");
+
 /* ---------- scroll animations ---------- */
 gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
 
@@ -578,7 +770,7 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, () => {
 
   // vertical chapters
   $$(".chapter").forEach(sec => {
-    const wrap = $(".frame-wrap", sec), frame = $(".frame", sec), img = $("img", frame);
+    const wrap = $(".frame-wrap", sec), frame = $(".frame", sec), img = $(".live", frame);
     const [from, to] = SHAPES[wrap.dataset.reveal] || SHAPES.wipe;
     const st = { trigger: wrap, start: "top 78%", toggleActions: "play none none reverse" };
     gsap.fromTo(frame, { clipPath: from }, { clipPath: to, duration: 1.5, ease: "power3.inOut", scrollTrigger: st });
@@ -603,7 +795,7 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, () => {
     scrollTrigger: { trigger: "#travel", start: "top 40%", toggleActions: "play none none reverse" } });
 
   $$(".panel:not(.intro)").forEach(p => {
-    const wrap = $(".frame-wrap", p), frame = $(".frame", p), img = $("img", frame);
+    const wrap = $(".frame-wrap", p), frame = $(".frame", p), img = $(".live", frame);
     const [from, to] = SHAPES[wrap.dataset.reveal] || SHAPES.wipe;
     const st = { trigger: p, containerAnimation: hTween, start: "left 70%", toggleActions: "play none none reverse" };
     gsap.fromTo(frame, { clipPath: from }, { clipPath: to, duration: 1.3, ease: "power3.inOut", scrollTrigger: st });
